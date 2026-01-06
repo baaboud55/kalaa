@@ -10,8 +10,10 @@ export interface Translation {
   };
   hero: {
     badge: string;
-    title: string;
-    subtitle: string;
+    title_prefix: string;
+    title_highlight: string;
+    subtitle_prefix: string;
+    subtitle_highlight: string;
     cta_primary: string;
     cta_secondary: string;
     stat_cost: string;

@@ -32,12 +32,14 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
 
         {/* Headline */}
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-          {t.title}
+          {t.title_prefix}
+          <span className="text-brand-300">{t.title_highlight}</span>
         </h1>
 
         {/* Subhead */}
         <p className="mt-4 max-w-2xl mx-auto text-xl text-brand-100 mb-10 leading-relaxed opacity-90">
-          {t.subtitle}
+          {t.subtitle_prefix}
+          <span className="font-bold text-white">{t.subtitle_highlight}</span>
         </p>
 
         {/* CTA Buttons */}
