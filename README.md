@@ -18,3 +18,17 @@ View your app in AI Studio: https://ai.studio/apps/drive/18rwSHyQ-oJvrIeIv-NcvDn
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Build and Deploy to GitHub Pages
+
+**Prerequisites:**  Node.js
+
+1. Install dependencies:
+   `npm install`
+2. Build the application:
+   `npm run build`
+3. Deploy the `dist` folder to GitHub Pages
+
+The build output in the `dist` folder contains static files that can be deployed to GitHub Pages. The application is configured with the correct base path (`/kalaa/`) for GitHub Pages deployment.
+
+**Note:** GitHub Pages hosts static files and cannot read `.tsx` (TypeScript) files directly. Always run `npm run build` before deploying to GitHub Pages, and deploy the contents of the `dist` folder.
