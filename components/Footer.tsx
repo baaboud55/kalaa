@@ -43,11 +43,11 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
             <ul className="space-y-4 text-sm">
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-brand-400" />
-                <span>info@kalaafeed.sa</span>
+                <span>baaboud55@gmail.com</span>
               </li>
               <li className="flex items-center gap-3">
                 <MapPin className="w-4 h-4 text-brand-400" />
-                <span>Jeddah, Saudi Arabia</span>
+                <span>Riyadh, Saudi Arabia</span>
               </li>
             </ul>
           </div>
