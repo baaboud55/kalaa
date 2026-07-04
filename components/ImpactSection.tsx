@@ -1,55 +1,54 @@
 import React, { useState } from 'react';
 import { Leaf, Coins, Zap } from 'lucide-react';
-import { Language } from '../types';
+import { motion } from 'framer-motion';
+import { useLanguage } from '../contexts/LanguageContext';
 import { content } from '../constants';
 
-interface ImpactSectionProps {
-  lang: Language;
-}
-
-const ImpactSection: React.FC<ImpactSectionProps> = ({ lang }) => {
+const ImpactSection: React.FC = () => {
+  const { lang, isRTL } = useLanguage();
   const t = content[lang].impact;
-  const isRTL = lang === 'ar';
   
-  // State for the simulation slider
   const [wasteProcessed, setWasteProcessed] = useState(100);
 
-  // Constants for calculation
-  // 1.9 tons CO2e per ton of food waste diverted (EPA Estimate / General organic waste average)
   const CO2_FACTOR = 1.9;
-  
-  // Savings Calculation:
-  // Assuming 1 ton of industrial bakery waste (low moisture) produces approx 0.8 tons of feed.
-  // Market price of imported feed (Barley/Alfalfa) ~1500 SAR/ton.
-  // Kalaa Savings (~40%) = 600 SAR/ton of feed.
-  // Savings per ton of waste = 0.8 * 600 = 480 SAR. 
-  // We use 450 SAR to be conservative and match the visual reference.
   const SAVINGS_FACTOR = 450;
 
   const co2Saved = Math.round(wasteProcessed * CO2_FACTOR);
   const farmerSavings = Math.round(wasteProcessed * SAVINGS_FACTOR);
 
-  // Number formatter
   const formatNumber = (num: number) => {
     return new Intl.NumberFormat(lang === 'ar' ? 'ar-SA' : 'en-US').format(num);
   };
 
   return (
-    <section id="impact" className="py-24 bg-white">
+    <section id="impact" className="py-24 bg-brand-sand-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">{t.title}</h2>
           <p className="text-lg text-slate-600">{t.subtitle}</p>
-        </div>
+        </motion.div>
 
-        <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden hover:shadow-3xl transition-shadow"
+        >
           <div className="grid lg:grid-cols-5 h-full">
             
             {/* Left/Top: The Controls */}
-            <div className="lg:col-span-2 p-8 md:p-12 bg-slate-50 border-b lg:border-b-0 lg:border-r border-slate-100 flex flex-col justify-center">
-              <div className="mb-8">
+            <div className="lg:col-span-2 p-8 md:p-12 bg-slate-50 border-b lg:border-b-0 lg:border-r border-slate-100 flex flex-col justify-center relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-200 rounded-full blur-3xl opacity-50 translate-x-1/2 -translate-y-1/2"></div>
+              <div className="mb-8 relative z-10">
                 <span className="text-brand-600 font-bold tracking-widest uppercase text-xs mb-2 block">
                   Impact Simulator
                 </span>
@@ -59,7 +58,7 @@ const ImpactSection: React.FC<ImpactSectionProps> = ({ lang }) => {
                 </p>
               </div>
 
-              <div className="mb-8">
+              <div className="mb-8 relative z-10">
                 <label htmlFor="waste-slider" className="block text-sm font-bold text-slate-700 mb-4">
                   {t.simulator.input_label}
                 </label>
@@ -72,12 +71,19 @@ const ImpactSection: React.FC<ImpactSectionProps> = ({ lang }) => {
                     step="10"
                     value={wasteProcessed}
                     onChange={(e) => setWasteProcessed(Number(e.target.value))}
-                    className={`w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 ${isRTL ? 'rtl-slider' : ''}`}
+                    className={`w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 transition-all ${isRTL ? 'rtl-slider' : ''}`}
                   />
                 </div>
                 <div className="flex justify-between mt-2 text-xs text-slate-400 font-mono">
                   <span>10</span>
-                  <span className="font-bold text-brand-600 text-lg">{formatNumber(wasteProcessed)}</span>
+                  <motion.span 
+                    key={wasteProcessed}
+                    initial={{ scale: 1.2, color: '#10b981' }}
+                    animate={{ scale: 1, color: '#059669' }}
+                    className="font-bold text-lg"
+                  >
+                    {formatNumber(wasteProcessed)}
+                  </motion.span>
                   <span>1000</span>
                 </div>
               </div>
@@ -88,36 +94,52 @@ const ImpactSection: React.FC<ImpactSectionProps> = ({ lang }) => {
               <div className="grid sm:grid-cols-2 gap-6 mb-8">
                 
                 {/* CO2 Card */}
-                <div className="p-6 rounded-2xl bg-brand-50 border border-brand-100 flex flex-col justify-between min-h-[160px] transition-all duration-300 hover:shadow-md">
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="p-6 rounded-2xl bg-gradient-to-br from-brand-50 to-emerald-50 border border-brand-100 flex flex-col justify-between min-h-[160px] shadow-sm hover:shadow-md transition-all"
+                >
                   <div className="flex justify-between items-start mb-4">
                     <span className="text-sm font-bold text-brand-700">{t.simulator.co2_label}</span>
                     <Leaf className="w-5 h-5 text-brand-500" />
                   </div>
                   <div>
-                    <span className="text-4xl md:text-5xl font-bold text-brand-900 block mb-1">
+                    <motion.span 
+                      key={co2Saved}
+                      initial={{ y: 5, opacity: 0.5 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      className="text-4xl md:text-5xl font-bold text-brand-900 block mb-1"
+                    >
                       {formatNumber(co2Saved)}
-                    </span>
+                    </motion.span>
                     <span className="text-sm text-brand-600 font-medium uppercase tracking-wider">
                       {t.simulator.co2_unit}
                     </span>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Savings Card */}
-                <div className="p-6 rounded-2xl bg-amber-50 border border-amber-100 flex flex-col justify-between min-h-[160px] transition-all duration-300 hover:shadow-md">
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="p-6 rounded-2xl bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-100 flex flex-col justify-between min-h-[160px] shadow-sm hover:shadow-md transition-all"
+                >
                    <div className="flex justify-between items-start mb-4">
                     <span className="text-sm font-bold text-amber-800">{t.simulator.savings_label}</span>
                     <Coins className="w-5 h-5 text-amber-500" />
                   </div>
                   <div>
-                    <span className="text-4xl md:text-5xl font-bold text-amber-900 block mb-1">
+                    <motion.span 
+                      key={farmerSavings}
+                      initial={{ y: 5, opacity: 0.5 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      className="text-4xl md:text-5xl font-bold text-amber-900 block mb-1"
+                    >
                       {formatNumber(farmerSavings)}
-                    </span>
+                    </motion.span>
                     <span className="text-sm text-amber-700 font-medium uppercase tracking-wider">
                       {t.simulator.savings_unit}
                     </span>
                   </div>
-                </div>
+                </motion.div>
               </div>
 
               <div className="flex items-start gap-2 text-xs text-slate-400 italic">
@@ -126,7 +148,7 @@ const ImpactSection: React.FC<ImpactSectionProps> = ({ lang }) => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
       </div>
       
@@ -137,12 +159,13 @@ const ImpactSection: React.FC<ImpactSectionProps> = ({ lang }) => {
           width: 24px;
           border-radius: 50%;
           background: #059669;
-          margin-top: -10px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+          margin-top: -10px;
           box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.2);
-          transition: box-shadow 0.2s;
+          transition: box-shadow 0.2s, transform 0.2s;
         }
         input[type=range]::-webkit-slider-thumb:hover {
-          box-shadow: 0 0 0 6px rgba(5, 150, 105, 0.3);
+          box-shadow: 0 0 0 8px rgba(5, 150, 105, 0.3);
+          transform: scale(1.1);
         }
         input[type=range]::-webkit-slider-runnable-track {
           width: 100%;

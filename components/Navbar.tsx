@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Globe, Sprout } from 'lucide-react';
-import { Language } from '../types';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../contexts/LanguageContext';
 import { content } from '../constants';
 
-interface NavbarProps {
-  lang: Language;
-  setLang: (lang: Language) => void;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
+const Navbar: React.FC = () => {
+  const { lang, setLang } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const t = content[lang].nav;
@@ -26,15 +23,24 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-md py-2' : 'bg-transparent py-4'}`}>
+    <motion.nav 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-md py-2' : 'bg-transparent py-4'}`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           
           {/* Logo */}
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <div className="bg-brand-600 p-2 rounded-lg">
+            <motion.div 
+              whileHover={{ rotate: 180 }}
+              transition={{ duration: 0.3 }}
+              className="bg-brand-600 p-2 rounded-lg"
+            >
               <Sprout className="h-6 w-6 text-white" />
-            </div>
+            </motion.div>
             <span className={`font-bold text-2xl tracking-tight ${isScrolled ? 'text-brand-900' : 'text-white'}`}>
               Kalaa
             </span>
@@ -46,9 +52,10 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
               <a 
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className={`font-medium text-sm transition-colors hover:text-brand-500 ${isScrolled ? 'text-slate-600' : 'text-slate-100'}`}
+                className={`relative font-medium text-sm transition-colors hover:text-brand-500 group ${isScrolled ? 'text-slate-600' : 'text-slate-100'}`}
               >
                 {t[item.toLowerCase() as keyof typeof t]}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-500 transition-all group-hover:w-full"></span>
               </a>
             ))}
             
@@ -60,12 +67,14 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
               <span>{lang === 'en' ? 'العربية' : 'English'}</span>
             </button>
 
-            <a 
+            <motion.a 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               href="#contact" 
-              className="px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-lg shadow-lg shadow-brand-600/20 transition transform hover:-translate-y-0.5 font-bold text-sm"
+              className="px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-lg shadow-lg shadow-brand-600/20 transition-colors font-bold text-sm"
             >
               {t.partner}
-            </a>
+            </motion.a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -78,29 +87,36 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-white absolute w-full border-b border-gray-100 shadow-xl animate-in slide-in-from-top duration-200">
-          <div className="px-4 py-6 space-y-4 flex flex-col items-center">
-            {['Mission', 'Challenge', 'Solution', 'Vision'].map((item) => (
-              <a 
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-slate-600 font-medium hover:text-brand-600 py-2"
-                onClick={() => setIsOpen(false)}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white absolute w-full border-b border-gray-100 shadow-xl overflow-hidden"
+          >
+            <div className="px-4 py-6 space-y-4 flex flex-col items-center">
+              {['Mission', 'Challenge', 'Solution', 'Vision'].map((item) => (
+                <a 
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className="text-slate-600 font-medium hover:text-brand-600 py-2"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {t[item.toLowerCase() as keyof typeof t]}
+                </a>
+              ))}
+              <button 
+                onClick={() => { toggleLang(); setIsOpen(false); }}
+                className="w-full text-center px-4 py-3 text-brand-600 font-bold bg-brand-50 rounded-lg mt-2"
               >
-                {t[item.toLowerCase() as keyof typeof t]}
-              </a>
-            ))}
-            <button 
-              onClick={() => { toggleLang(); setIsOpen(false); }}
-              className="w-full text-center px-4 py-3 text-brand-600 font-bold bg-brand-50 rounded-lg mt-2"
-            >
-              {lang === 'en' ? 'Switch to Arabic' : 'Switch to English'}
-            </button>
-          </div>
-        </div>
-      )}
-    </nav>
+                {lang === 'en' ? 'Switch to Arabic' : 'Switch to English'}
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 };
 
