@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
               <ul className="space-y-4 text-sm">
                 <li className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-brand-400" />
-                  <span>baaboud55@gmail.com</span>
+                  <span>info@kalaa.sa</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <MapPin className="w-4 h-4 text-brand-400" />
