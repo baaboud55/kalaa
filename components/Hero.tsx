@@ -37,7 +37,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section ref={ref} className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-brand-900">
+    <section ref={ref} className="relative pt-24 pb-16 md:pt-32 md:pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-brand-900">
       {/* Background Animated Blob & Overlay */}
       <motion.div style={{ y: yBg, opacity: opacityBg }} className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <motion.div 
