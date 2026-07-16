@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProblemSection from './components/ProblemSection';
@@ -6,6 +7,7 @@ import SolutionSection from './components/SolutionSection';
 import ImpactSection from './components/ImpactSection';
 import VisionSection from './components/VisionSection';
 import Footer from './components/Footer';
+import FeedCalculator from './components/FeedCalculator';
 import { Language } from './types';
 
 import { useLanguage } from './contexts/LanguageContext';
@@ -37,11 +39,18 @@ function App() {
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
         >
-          <Hero />
-          <ProblemSection />
-          <SolutionSection />
-          <ImpactSection />
-          <VisionSection />
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Hero />
+                <ProblemSection />
+                <SolutionSection />
+                <ImpactSection />
+                <VisionSection />
+              </>
+            } />
+            <Route path="/calculator" element={<FeedCalculator />} />
+          </Routes>
           <Footer />
         </motion.div>
       </AnimatePresence>

@@ -3,6 +3,29 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 
 import { LanguageProvider } from './contexts/LanguageContext';
+import { BrowserRouter } from 'react-router-dom';
+
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ padding: '2rem', color: 'red' }}>
+          <h1>Something went wrong.</h1>
+          <pre>{this.state.error.toString()}</pre>
+          <pre>{this.state.error.stack}</pre>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -12,8 +35,12 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <LanguageProvider>
-      <App />
-    </LanguageProvider>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <LanguageProvider>
+          <App />
+        </LanguageProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   </React.StrictMode>
 );

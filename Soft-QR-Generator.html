@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalaa Soft QR Code Generator</title>
+    <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+        }
+        h1 { color: #2c3e50; }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover { background-color: #45a049; }
+        #canvas { margin-top: 20px; border: 2px dashed #ddd; padding: 10px; border-radius: 10px; min-width: 300px; min-height: 300px; }
+        .file-upload { display: flex; align-items: center; justify-content: center; gap: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Kalaa Custom QR Code</h1>
+        <p>Upload any of your logos to instantly generate a soft-edged QR code.</p>
+        
+        <div class="controls">
+            <div class="file-upload">
+                <label for="logoInput"><strong>1. Select Logo:</strong></label>
+                <input type="file" id="logoInput" accept="image/png, image/jpeg">
+            </div>
+            <div>
+                <button id="downloadBtn">2. Download QR Code</button>
+            </div>
+        </div>
+
+        <div id="canvas"></div>
+    </div>
+
+    <script>
+        let currentLogo = '';
+
+        const qrCode = new QRCodeStyling({
+            width: 800,
+            height: 800,
+            data: "https://kalaa.sa",
+            image: "",
+            dotsOptions: {
+                color: "#3c9e22",
+                type: "rounded" // This makes the edges soft!
+            },
+            cornersSquareOptions: {
+                color: "#3c9e22",
+                type: "extra-rounded"
+            },
+            cornersDotOptions: {
+                color: "#3c9e22",
+                type: "dot"
+            },
+            backgroundOptions: {
+                color: "#ffffff",
+            },
+            imageOptions: {
+                crossOrigin: "anonymous",
+                margin: 20,
+                imageSize: 0.4
+            }
+        });
+
+        qrCode.append(document.getElementById("canvas"));
+
+        document.getElementById("logoInput").addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    currentLogo = event.target.result;
+                    qrCode.update({ image: currentLogo });
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById("downloadBtn").addEventListener("click", () => {
+            qrCode.download({ name: "qr-theme-soft-edges", extension: "png" });
+        });
+    </script>
+</body>
+</html>

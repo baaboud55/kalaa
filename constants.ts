@@ -7,7 +7,8 @@ export const content: Record<'en' | 'ar', Translation> = {
       challenge: "Challenge",
       solution: "Solution",
       vision: "Vision 2030",
-      partner: "Partner or Invest"
+      partner: "Partner or Invest",
+      calculator: "Feed Calculator"
     },
     hero: {
       badge: "Sustainable Agriculture Tech",
@@ -95,7 +96,8 @@ export const content: Record<'en' | 'ar', Translation> = {
       challenge: "التحدي",
       solution: "الحل",
       vision: "رؤية 2030",
-      partner: "استثمر أو شاركنا"
+      partner: "استثمر أو شاركنا",
+      calculator: "حاسبة الأعلاف"
     },
     hero: {
       badge: "تقنيات زراعية مستدامة",
