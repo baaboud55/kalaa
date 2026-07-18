@@ -35,8 +35,11 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           
           {/* Logo */}
-          <div className="flex items-center cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <img src="/logo.jpeg" alt="Kalaa Logo" className="h-10 w-auto object-contain rounded bg-white" />
+          <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <img src="/logo.jpeg" alt="Kalaa Logo" className="h-12 w-auto object-contain rounded bg-white" />
+            <span className={`font-bold text-2xl tracking-tight ${isScrolled ? 'text-brand-900' : 'text-white'}`}>
+              Kalaa
+            </span>
           </div>
 
           {/* Desktop Menu */}
