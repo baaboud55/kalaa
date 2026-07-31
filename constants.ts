@@ -40,10 +40,14 @@ export const content: Record<'en' | 'ar', Translation> = {
       ai_title: "AI & Automation",
       ai_desc: "Real-time analysis of raw waste to ensure consistent nutritional output.",
       process_title: "The Kalaa Cycle",
-      step1: "Collection",
-      step2: "AI Analysis",
-      step3: "Extrusion",
-      step4: "Premium Feed"
+      steps: [
+        { title: "Waste Reception & Pre-Processing", desc: "Organic waste is received and processed using an advanced depackaging machine to remove non-organic materials safely." },
+        { title: "Slurry Creation & Mixing", desc: "Waste is ground into a liquid slurry and routed using our AI LLM. A spectroscopy machine analyzes the exact nutritional makeup." },
+        { title: "Extrusion / Pelletizing System", desc: "The dough-like pre-mix is force-fed into a wet-extrusion unit, operating under high pressure to form uniform, spaghetti-like strands." },
+        { title: "Thermal Processing", desc: "Strands are conveyed into a heavy-duty thermal fluid bed dryer for rapid drying and pathogen destruction, forming durable pellets." },
+        { title: "Parallel Bio-Conversion Line", desc: "Non-compliant batches are routed to a zero-waste Black Soldier Fly (BSF) loop, converting biomass into high-value insect protein." },
+        { title: "Final Output & Storage", desc: "Finished, pathogen-free pellets are conveyed into massive grain silos equipped with digital inventory management for dispatch." }
+      ]
     },
     impact: {
       title: "Impact & Opportunity",
@@ -129,10 +133,14 @@ export const content: Record<'en' | 'ar', Translation> = {
       ai_title: "الذكاء الاصطناعي والأتمتة",
       ai_desc: "تحليل فوري للمواد الخام لضمان جودة غذائية موحدة.",
       process_title: "دورة كلأ",
-      step1: "الجمع",
-      step2: "التحليل الذكي",
-      step3: "البثق",
-      step4: "أعلاف مميزة"
+      steps: [
+        { title: "استلام ومعالجة النفايات", desc: "يتم استلام النفايات العضوية ومعالجتها باستخدام آلة فصل وتفريغ متطورة لإزالة المواد غير العضوية بأمان." },
+        { title: "صنع الخليط والمزج", desc: "تُطحن النفايات إلى خليط سائل ويتم توجيهها باستخدام نموذج الذكاء الاصطناعي. كما يحلل جهاز المطياف المكونات الغذائية الدقيقة." },
+        { title: "نظام البثق والتشكيل", desc: "يُدفع الخليط الأولي بقوة داخل وحدة بثق رطبة تعمل تحت ضغط عالٍ لتشكيل خيوط متجانسة." },
+        { title: "المعالجة الحرارية", desc: "تُنقل الخيوط إلى مجفف حراري صناعي للتجفيف السريع والقضاء على مسببات الأمراض، لتكوين حبيبات صلبة." },
+        { title: "التحويل الحيوي الموازي", desc: "تُوجه الدفعات غير المطابقة إلى مسار ذبابة الجندي الأسود (BSF)، لتحويل الكتلة الحيوية إلى بروتين حشري عالي القيمة." },
+        { title: "المنتج النهائي والتخزين", desc: "تُنقل الحبيبات الجاهزة الخالية من مسببات الأمراض إلى صوامع حبوب ضخمة مزودة بإدارة مخزون رقمية استعداداً لتوزيعها." }
+      ]
     },
     impact: {
       title: "الأثر والفرص",

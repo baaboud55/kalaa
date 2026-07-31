@@ -38,10 +38,10 @@ export interface Translation {
     ai_title: string;
     ai_desc: string;
     process_title: string;
-    step1: string;
-    step2: string;
-    step3: string;
-    step4: string;
+    steps: {
+      title: string;
+      desc: string;
+    }[];
   };
   impact: {
     title: string;
