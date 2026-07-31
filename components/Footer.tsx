@@ -49,13 +49,6 @@ const Footer: React.FC = () => {
                 </li>
               ))}
             </ul>
-
-            <h4 className="text-white font-bold mb-6">{lang === 'ar' ? 'الاعتمادات الرسمية' : 'Official Certifications'}</h4>
-            <ul className="space-y-3 text-sm">
-              <li><a href="#" className="hover:text-brand-300 transition-colors inline-block">{lang === 'ar' ? 'السجل التجاري' : 'Commercial Registration'}</a></li>
-              <li><a href="#" className="hover:text-brand-300 transition-colors inline-block">{lang === 'ar' ? 'شهادة ضريبة القيمة المضافة' : 'VAT Certificate'}</a></li>
-              <li><a href="#" className="hover:text-brand-300 transition-colors inline-block">{lang === 'ar' ? 'ترخيص وزارة البيئة والمياه والزراعة' : 'MEWA License'}</a></li>
-            </ul>
           </div>
 
           <div className="lg:col-span-5">
@@ -67,7 +60,7 @@ const Footer: React.FC = () => {
           <p>{t.rights}</p>
           
           <div className="flex flex-col items-center">
-            <img src="/cr-qr.png" alt="Commercial Registration QR Code" className="w-24 h-24 rounded bg-white p-1 mb-2 shadow-lg" />
+            <img src="/qr-theme-soft-edges.png" alt="Commercial Registration QR Code" className="w-24 h-24 rounded bg-white p-1 mb-2 shadow-lg" />
             <span className="font-mono text-brand-100">{t.cr_number}</span>
           </div>
 
