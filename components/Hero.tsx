@@ -74,7 +74,7 @@ const Hero: React.FC = () => {
         </motion.div>
 
         {/* Headline */}
-        <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
+        <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-normal md:leading-tight tracking-tight">
           {t.title_prefix}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-emerald-200">{t.title_highlight}</span>
         </motion.h1>
@@ -108,7 +108,7 @@ const Hero: React.FC = () => {
       </motion.div>
       
       {/* Stats Strip */}
-      <div className="absolute bottom-0 w-full bg-black/20 backdrop-blur-md border-t border-white/10">
+      <div className="w-full bg-black/20 backdrop-blur-md border-t border-white/10 mt-12 lg:absolute lg:mt-0 lg:bottom-0">
         <div className="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-white divide-y md:divide-y-0 md:divide-x divide-white/10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }} className="flex flex-col items-center">
             <div className="flex items-center gap-2 mb-1 text-brand-300">

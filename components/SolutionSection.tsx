@@ -64,7 +64,7 @@ const SolutionSection: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <span className="text-brand-300 font-bold tracking-widest uppercase text-sm mb-2 block">{t.label}</span>
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">{t.title}</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-normal md:leading-tight">{t.title}</h2>
             <p className="text-brand-100 text-lg mb-8 leading-relaxed">
               {t.desc}
             </p>

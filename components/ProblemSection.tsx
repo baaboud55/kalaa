@@ -49,7 +49,7 @@ const ProblemSection: React.FC = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white/80 backdrop-blur-md p-8 rounded-3xl shadow-xl border border-white h-96 flex flex-col hover:shadow-2xl transition-shadow"
+            className="bg-white/80 backdrop-blur-md p-8 rounded-3xl shadow-xl border border-white h-auto min-h-[24rem] flex flex-col hover:shadow-2xl transition-shadow"
           >
             <h3 className="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-brand-600" />
