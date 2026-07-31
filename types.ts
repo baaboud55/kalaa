@@ -77,5 +77,7 @@ export interface Translation {
     links: string;
     contact: string;
     rights: string;
+    cr_number: string;
+    scan_cr: string;
   };
 }

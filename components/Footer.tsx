@@ -67,8 +67,9 @@ const Footer: React.FC = () => {
           <p>{t.rights}</p>
           
           <div className="flex flex-col items-center">
-            <span className="mb-2 font-semibold text-brand-300">{lang === 'ar' ? 'امسح الباركود' : 'Scan to Connect'}</span>
-            <img src="/qr-theme-soft-edges.png" alt="Kalaa QR Code" className="w-24 h-24 rounded-lg bg-white p-1" />
+            <span className="mb-2 font-bold text-brand-300">{t.scan_cr}</span>
+            <img src="/cr-qr.png" alt="Commercial Registration QR Code" className="w-24 h-24 rounded bg-white p-1 mb-2 shadow-lg" />
+            <span className="font-mono text-brand-100">{t.cr_number}</span>
           </div>
 
           <div className="flex gap-4">

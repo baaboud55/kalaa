@@ -91,7 +91,9 @@ export const content: Record<'en' | 'ar', Translation> = {
       desc: "Transforming the Saudi agricultural sector through circular economy principles.",
       links: "Quick Links",
       contact: "Contact",
-      rights: "© 2024 Kalaa for Feed. All rights reserved."
+      rights: "© 2024 Kalaa Commercial Establishment. All rights reserved.",
+      cr_number: "Unified National No: 7042264452",
+      scan_cr: "Verify CR Certificate"
     }
   },
   ar: {
@@ -184,7 +186,9 @@ export const content: Record<'en' | 'ar', Translation> = {
       desc: "إحداث نقلة نوعية في القطاع الزراعي السعودي عبر الاقتصاد الدائري.",
       links: "روابط سريعة",
       contact: "تواصل معنا",
-      rights: "© 2024 كلأ للأعلاف. جميع الحقوق محفوظة."
+      rights: "© 2024 مؤسسة كلأ التجارية. جميع الحقوق محفوظة.",
+      cr_number: "الرقم الوطني الموحد: 7042264452",
+      scan_cr: "تحقق من السجل التجاري"
     }
   }
 };
