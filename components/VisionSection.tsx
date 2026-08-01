@@ -104,23 +104,7 @@ const VisionSection: React.FC = () => {
             </motion.div>
         </motion.div>
 
-        {/* Strategic Alignment Badges */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-          className="flex flex-wrap justify-center gap-4"
-        >
-          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-3 px-6 py-3 bg-white rounded-full shadow-sm text-brand-900 font-bold border border-brand-100 hover:shadow-md transition-shadow cursor-default">
-            <Factory className="w-5 h-5 text-brand-600" />
-            <span className="text-sm md:text-base">{t.nidlp}</span>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-3 px-6 py-3 bg-white rounded-full shadow-sm text-brand-900 font-bold border border-brand-100 hover:shadow-md transition-shadow cursor-default">
-            <Leaf className="w-5 h-5 text-brand-600" />
-            <span className="text-sm md:text-base">{t.sgi}</span>
-          </motion.div>
-        </motion.div>
+
 
       </div>
     </section>
