@@ -17,7 +17,7 @@ const ImpactSection: React.FC = () => {
   const farmerSavings = Math.round(wasteProcessed * SAVINGS_FACTOR);
 
   const formatNumber = (num: number) => {
-    return new Intl.NumberFormat(lang === 'ar' ? 'ar-SA' : 'en-US').format(num);
+    return new Intl.NumberFormat('en-US').format(num);
   };
 
   return (
